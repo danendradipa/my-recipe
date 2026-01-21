@@ -1,42 +1,12 @@
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
-import { useRoute, useRouter } from "vue-router";
-import { recipesApi } from "../api/recipes";
-import type { Recipe } from "../types/recipe";
-import EmptyState from "../components/common/EmptyState.vue";
+import { useRecipeDetail } from "../composables/useRecipeDetail";
 import RecipeMetaCard from "../components/recipe/RecipeMetaCard.vue";
+import EmptyState from "../components/common/EmptyState.vue";
+import { useRouter } from "vue-router";
 
-const route = useRoute();
 const router = useRouter();
-const recipe = ref<Recipe | null>(null);
-const loading = ref(true);
-const error = ref<string | null>(null);
 
-onMounted(async () => {
-  try {
-    const id = Number(route.params.id);
-
-    if (isNaN(id)) {
-      error.value = "Invalid recipe ID";
-      loading.value = false;
-      return;
-    }
-
-    const data = await recipesApi.getById(id);
-
-    if ("message" in data && data.message) {
-      error.value = "Recipe not found";
-      recipe.value = null;
-    } else {
-      recipe.value = data;
-    }
-  } catch (e) {
-    error.value = "Failed to load recipe";
-    console.error(e);
-  } finally {
-    loading.value = false;
-  }
-});
+const { recipe, loading, error } = useRecipeDetail();
 </script>
 
 <template>
@@ -103,11 +73,7 @@ onMounted(async () => {
             label="Cook Time"
             :value="`${recipe.cookTimeMinutes} min`"
           />
-          <RecipeMetaCard
-            icon="👥"
-            label="Servings"
-            :value="recipe.servings"
-          />
+          <RecipeMetaCard icon="👥" label="Servings" :value="recipe.servings" />
           <RecipeMetaCard
             icon="🔥"
             label="Calories"
