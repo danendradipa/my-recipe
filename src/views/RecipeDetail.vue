@@ -3,6 +3,7 @@ import { ref, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { recipesApi } from "../api/recipes";
 import type { Recipe } from "../types/recipe";
+import EmptyState from "../components/common/EmptyState.vue";
 
 const route = useRoute();
 const router = useRouter();
@@ -13,7 +14,21 @@ const error = ref<string | null>(null);
 onMounted(async () => {
   try {
     const id = Number(route.params.id);
-    recipe.value = await recipesApi.getById(id);
+
+    if (isNaN(id)) {
+      error.value = "Invalid recipe ID";
+      loading.value = false;
+      return;
+    }
+
+    const data = await recipesApi.getById(id);
+
+    if ("message" in data && data.message) {
+      error.value = "Recipe not found";
+      recipe.value = null;
+    } else {
+      recipe.value = data;
+    }
   } catch (e) {
     error.value = "Failed to load recipe";
     console.error(e);
@@ -38,6 +53,7 @@ onMounted(async () => {
       v-else-if="error || !recipe"
       icon="😢"
       title="Recipe not found"
+      description="The recipe you're looking for doesn't exist or has been removed."
       actionText="Back to Recipes"
       actionLink="/recipes"
     />
