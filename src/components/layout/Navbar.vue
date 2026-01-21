@@ -1,25 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { useSearch } from '../../composables/useSearch'
 
-const router = useRouter()
-const searchQuery = ref('')
+const { searchQuery, handleSearch, clearSearch } = useSearch()
 const isMobileMenuOpen = ref(false)
-
-const handleSearch = () => {
-  if (searchQuery.value.trim()) {
-    router.push({ name: 'Recipes', query: { search: searchQuery.value } })
-    isMobileMenuOpen.value = false
-  } else {
-    router.push({ name: 'Recipes' })
-    isMobileMenuOpen.value = false
-  }
-}
-
-const clearSearch = () => {
-  searchQuery.value = ''
-  router.push({ name: 'Recipes' })
-}
 </script>
 
 <template>
