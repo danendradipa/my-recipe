@@ -52,7 +52,7 @@ onMounted(async () => {
           :alt="recipe.name"
           class="w-full h-full object-cover"
         />
-        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+        <div class="absolute inset-0 bg-linear-to-t from-black/60 to-transparent"></div>
         <div class="absolute bottom-8 left-0 right-0">
           <div class="max-w-4xl mx-auto px-4">
             <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
@@ -130,7 +130,7 @@ onMounted(async () => {
               :key="index"
               class="flex"
             >
-              <span class="flex-shrink-0 w-8 h-8 bg-orange-600 text-white rounded-full flex items-center justify-center font-semibold mr-4">
+              <span class="shrink-0 w-8 h-8 bg-orange-600 text-white rounded-full flex items-center justify-center font-semibold mr-4">
                 {{ index + 1 }}
               </span>
               <p class="text-gray-700 pt-1">{{ instruction }}</p>
