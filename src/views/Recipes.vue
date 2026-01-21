@@ -28,6 +28,7 @@ watch(() => route.query.search, async (newSearch) => {
   if (searchQuery.value) {
     await handleSearch(searchQuery.value)
   } else {
+    searchResults.value = []
     await fetchRecipes(30, 0)
   }
 })
