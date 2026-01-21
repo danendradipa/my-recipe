@@ -18,7 +18,7 @@ const handleSearch = () => {
   <nav class="bg-white shadow-lg sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-16">
-        <div class="flex-shrink-0">
+        <div class="shrink-0">
           <RouterLink to="/" class="flex items-center space-x-2">
             <span class="text-2xl">🍳</span>
             <span class="text-xl font-bold text-orange-600">MyRecipe</span>
