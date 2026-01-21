@@ -14,7 +14,7 @@ onMounted(() => {
 
 <template>
   <div class="home">
-    <section class="bg-gradient-to-r from-orange-500 to-red-500 text-white py-20">
+    <section class="bg-linear-to-r from-orange-500 to-red-500 text-white py-20">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h1 class="text-5xl md:text-6xl font-bold mb-6">
           Welcome to MyRecipe
