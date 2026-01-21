@@ -1,5 +1,5 @@
 <template>
-  <div class="about-page min-h-screen">
+  <div class="about-page">
     <div class="max-w-4xl mx-auto px-4 py-16">
       <h1 class="text-4xl font-bold text-gray-800 mb-8 text-center">About MyRecipe</h1>
       
@@ -12,11 +12,6 @@
           Our mission is to make cooking accessible, enjoyable, and inspiring for everyone. 
           Explore thousands of recipes, find your favorites, and start cooking today!
         </p>
-      </div>
-
-      <div class="text-center">
-        <p class="text-gray-600">Built with ❤️ using Vue 3, TypeScript, and Tailwind CSS</p>
-        <p class="text-sm text-gray-500 mt-2">Data provided by DummyJSON API</p>
       </div>
     </div>
   </div>
