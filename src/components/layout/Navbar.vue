@@ -10,7 +10,15 @@ const handleSearch = () => {
   if (searchQuery.value.trim()) {
     router.push({ name: 'Recipes', query: { search: searchQuery.value } })
     isMobileMenuOpen.value = false
+  } else {
+    router.push({ name: 'Recipes' })
+    isMobileMenuOpen.value = false
   }
+}
+
+const clearSearch = () => {
+  searchQuery.value = ''
+  router.push({ name: 'Recipes' })
 }
 </script>
 
@@ -32,8 +40,18 @@ const handleSearch = () => {
                 v-model="searchQuery"
                 type="text"
                 placeholder="Search recipes..."
-                class="w-full px-4 py-2 pr-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                class="w-full px-4 py-2 pr-20 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
               />
+              <button
+                v-if="searchQuery"
+                type="button"
+                @click="clearSearch"
+                class="absolute right-10 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+              >
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
               <button
                 type="submit"
                 class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-orange-600"
@@ -102,8 +120,18 @@ const handleSearch = () => {
               v-model="searchQuery"
               type="text"
               placeholder="Search recipes..."
-              class="w-full px-4 py-2 pr-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+              class="w-full px-4 py-2 pr-20 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
             />
+            <button
+              v-if="searchQuery"
+              type="button"
+              @click="clearSearch"
+              class="absolute right-10 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+            >
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
             <button
               type="submit"
               class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-orange-600"
