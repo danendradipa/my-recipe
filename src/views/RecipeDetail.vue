@@ -4,6 +4,7 @@ import { useRoute, useRouter } from "vue-router";
 import { recipesApi } from "../api/recipes";
 import type { Recipe } from "../types/recipe";
 import EmptyState from "../components/common/EmptyState.vue";
+import RecipeMetaCard from "../components/recipe/RecipeMetaCard.vue";
 
 const route = useRoute();
 const router = useRouter();
@@ -91,32 +92,27 @@ onMounted(async () => {
 
       <div class="max-w-4xl mx-auto px-4 py-12">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-          <div class="bg-white p-4 rounded-lg shadow text-center">
-            <div class="text-3xl mb-2">⏱️</div>
-            <div class="text-sm text-gray-600">Prep Time</div>
-            <div class="text-lg font-semibold">
-              {{ recipe.prepTimeMinutes }} min
-            </div>
-          </div>
-          <div class="bg-white p-4 rounded-lg shadow text-center">
-            <div class="text-3xl mb-2">🍳</div>
-            <div class="text-sm text-gray-600">Cook Time</div>
-            <div class="text-lg font-semibold">
-              {{ recipe.cookTimeMinutes }} min
-            </div>
-          </div>
-          <div class="bg-white p-4 rounded-lg shadow text-center">
-            <div class="text-3xl mb-2">👥</div>
-            <div class="text-sm text-gray-600">Servings</div>
-            <div class="text-lg font-semibold">{{ recipe.servings }}</div>
-          </div>
-          <div class="bg-white p-4 rounded-lg shadow text-center">
-            <div class="text-3xl mb-2">🔥</div>
-            <div class="text-sm text-gray-600">Calories</div>
-            <div class="text-lg font-semibold">
-              {{ recipe.caloriesPerServing }}
-            </div>
-          </div>
+          <RecipeMetaCard
+            icon="⏱️"
+            label="Prep Time"
+            :value="`${recipe.prepTimeMinutes} min`"
+          />
+
+          <RecipeMetaCard
+            icon="🍳"
+            label="Cook Time"
+            :value="`${recipe.cookTimeMinutes} min`"
+          />
+          <RecipeMetaCard
+            icon="👥"
+            label="Servings"
+            :value="recipe.servings"
+          />
+          <RecipeMetaCard
+            icon="🔥"
+            label="Calories"
+            :value="recipe.caloriesPerServing"
+          />
         </div>
 
         <div class="mb-12">
